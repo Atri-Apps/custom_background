@@ -10,7 +10,7 @@ https://atri-apps.github.io/custom_background/
 ### Step 1: Setup
 
 ```shell
-git clone https://github.com/Atri-Labs/custom_background.git
+git clone https://github.com/Atri-Apps/custom_background.git
 
 cd custom_background
 
