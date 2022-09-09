@@ -1,8 +1,6 @@
 # Atri-Apps/custom_background
 
-This is a background-removal/changer app that we created using the atri framework. This app offers the user to upload custom foreground and background images and also 
-
-an option to choose from our example backgrounds to swap their foreground images background.
+This is a background-removal/changer app that we created using the atri framework. This app offers the user to upload custom foreground and background images and also an option to choose from our example backgrounds to swap their foreground images background.
 
 ## Demo
 https://atri-apps.github.io/custom_background/
