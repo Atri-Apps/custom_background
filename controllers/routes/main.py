@@ -13,8 +13,12 @@ import io
 
 def change_backgound(at, back):
     if at.Image17.custom.src != '/app-assets/istockphoto-1313110704-612x612.jpeg':
-        input = Image.open('assets/' + at.Image17.custom.src.split('/')[-1]).resize((600,600))
-        output = remove(input)
+        if os.path.exists('your_file.jpeg'):
+            input_img = Image.open('your_file.jpeg').resize((600, 600))
+        else:
+            input_img = Image.open('assets/' + at.Image17.custom.src.split('/')[-1]).resize((600,600))
+        output = remove(input_img)
+        output.show()
         if type(back) == str:
             back = Image.open('assets/' + back.split('/')[-1]).resize((600,600))
         elif type(back) == bytes:
@@ -42,6 +46,8 @@ def handle_page_request(at: Atri, req: Request, res: Response, query: str):
     at.Background.styles.display = 'none'
     at.Image.styles.display = 'flex'
     # print(at.Image17.custom.src)
+    if os.path.exists('your_file.jpeg'):
+        os.remove('your_file.jpeg')
     pass
 
 def handle_event(at: Atri, req: Request, res: Response):
@@ -86,8 +92,11 @@ def handle_event(at: Atri, req: Request, res: Response):
     if at.Upload2.onChange:
         if at.Upload2.io.files != None:
             file = at.Upload2.io.files[0]
-            at.Image17.custom.src = create_media_response(file.file.read(), mime_type=file.content_type)
+            file_bytes = file.file.read()
+            at.Image17.custom.src = create_media_response(file_bytes, mime_type=file.content_type)
             at.Image2.custom.src = at.Image17.custom.src
+            cv2.imwrite('your_file.jpeg', parse_uploaded_file(file_bytes))
+
 
     if at.Image15.onClick:
         at.Image17.custom.src = at.Image15.custom.src
