@@ -18,7 +18,6 @@ def change_backgound(at, back):
         else:
             input_img = Image.open('assets/' + at.Image17.custom.src.split('/')[-1]).resize((600,600))
         output = remove(input_img)
-        output.show()
         if type(back) == str:
             back = Image.open('assets/' + back.split('/')[-1]).resize((600,600))
         elif type(back) == bytes:
